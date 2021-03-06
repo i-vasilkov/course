@@ -11,7 +11,10 @@ Route::group(['prefix' => 'test'], function () {
 });
 
 use App\Http\Controllers\UserController;
-Route::get('/user/{name?}', [UserController::class, 'showName']);
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/{name?}', [UserController::class, 'showName']);
+    Route::post('/store', [UserController::class, 'store']);
+});
 
 use App\Http\Controllers\TaskController;
 Route::group(['prefix' => 'task'], function () {
